@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Blokqo — Eventos perto de você</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Blokqo coloca eventos de saúde, cultura e comunidade na palma da sua mão. Descubra o que está rolando perto de você e ajude a divulgar o que importa." />
+  <style>
+    :root{
+      /* Paleta minimalista em tons neutros + 1 cor de destaque */
+      --pe-blue:#111827;   /* texto principal */
+      --accent:#1c3faa;    /* destaque */
+      --accent-soft:#dbeafe;
+      --pe-yellow:#dbeafe;
+      --pe-red:#475569;
+      --pe-green:#94a3b8;
+      --bg:#f7f7f7;
+      --bg-soft:#ffffff;
+      --text:#111827;
+      --muted:#4b5563;
+      --radius:14px;
+      --shadow:0 10px 26px rgba(15,23,42,0.06);
+      font-family: system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    a{text-decoration:none;color:inherit}
+    .page{max-width:1100px;margin:0 auto;padding:24px 20px 48px}
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      margin-bottom:24px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .mark{
+      width:42px;height:42px;border-radius:12px;
+      background:linear-gradient(135deg,#111827,#4b5563);
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;font-weight:800;
+      box-shadow:0 8px 20px rgba(15,23,42,0.25);
+    }
+    .brand-title{font-weight:800;letter-spacing:0.06em;font-size:18px;text-transform:uppercase}
+    .brand-sub{font-size:12px;color:var(--muted)}
+    .beta{
+      font-size:12px;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.7);
+      background:rgba(1,48,106,0.05);
+      color:var(--muted);
+    }
+
+    /* HERO */
+    .hero{
+      display:grid;
+      grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
+      gap:32px;
+      align-items:center;
+      margin-bottom:36px;
+    }
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .hero-visual{order:-1}
+    }
+    .tagline{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+      color:var(--accent);
+      margin-bottom:10px;
+    }
+    .hero-title{
+      font-size:clamp(26px,4vw,34px);
+      font-weight:800;
+      margin-bottom:10px;
+    }
+    .hero-title span{color:var(--accent);}
+    .hero-sub{
+      font-size:15px;
+      color:#374151;
+      margin-bottom:18px;
+      max-width:480px;
+    }
+    .hero-badges{
+      display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;
+    }
+    .badge{
+      padding:6px 11px;
+      border-radius:999px;
+      font-size:12px;
+      background:#fff;
+      border:1px solid rgba(148,163,184,0.6);
+      display:inline-flex;align-items:center;gap:6px;
+      color:#1f2937;
+    }
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--accent);}
+    .dot.green{background:#94a3b8;}
+    .dot.red{background:#475569;}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .btn-primary{
+      border:none;
+      cursor:pointer;
+      padding:11px 18px;
+      border-radius:999px;
+      background:var(--pe-blue);
+      color:#fff;
+      font-weight:700;
+      font-size:14px;
+      box-shadow:var(--shadow);
+      display:inline-flex;align-items:center;gap:8px;
+    }
+    .btn-secondary{
+      border-radius:999px;
+      padding:10px 16px;
+      background:#fff;
+      border:1px solid rgba(148,163,184,0.7);
+      font-size:13px;
+      color:var(--pe-blue);
+      cursor:pointer;
+    }
+    .hero-note{font-size:12px;color:var(--muted);margin-top:6px;}
+    .hero-visual{
+      background:var(--bg-soft);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(148,163,184,0.25);
+      padding:14px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .hero-visual img{max-width:100%;height:auto;display:block;}
+
+    /* sections */
+    section{margin-bottom:32px;}
+    h2.section-title{font-size:20px;margin-bottom:8px;}
+    .section-sub{font-size:14px;color:var(--muted);max-width:620px;}
+
+    .usecases{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;margin-top:16px;
+    }
+    @media(max-width:900px){.usecases{grid-template-columns:1fr}}
+    .card{
+      background:var(--bg-soft);
+      border-radius:var(--radius);
+      padding:14px 14px 16px;
+      border:1px solid rgba(148,163,184,0.3);
+      box-shadow:0 10px 26px rgba(15,23,42,0.06);
+      font-size:13px;
+    }
+    .card h3{font-size:15px;margin-bottom:4px;}
+    .tag{
+      display:inline-block;
+      font-size:11px;
+      padding:4px 8px;
+      border-radius:999px;
+      background:var(--accent-soft);
+      color:var(--accent);
+      margin-bottom:6px;
+      font-weight:600;
+    }
+
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+    .chip{
+      padding:7px 11px;
+      border-radius:999px;
+      font-size:12px;
+      background:#fff;
+      border:1px solid rgba(148,163,184,0.4);
+      display:inline-flex;align-items:center;gap:6px;
+    }
+    .pill-icon{width:9px;height:9px;border-radius:999px;background:var(--accent);}
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin-top:16px;
+    }
+    @media(max-width:900px){.steps{grid-template-columns:1fr}}
+    .step-num{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+      color:var(--pe-blue);
+      margin-bottom:4px;
+    }
+
+    /* right column form area */
+    .right-col{margin-top:12px;}
+    .signup-card{
+      background:#ffffff;
+      border-radius:var(--radius);
+      padding:18px 18px 20px;
+      border:1px solid rgba(148,163,184,0.35);
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+    }
+    .signup-card h2{font-size:18px;margin-bottom:6px;}
+    .signup-card p{font-size:13px;color:var(--muted);margin-bottom:10px;}
+    form{display:flex;flex-direction:column;gap:10px;}
+    label{font-size:12px;color:var(--muted);}
+    input,select,textarea{
+      width:100%;
+      padding:9px 10px;
+      border-radius:10px;
+      border:1px solid rgba(148,163,184,0.8);
+      background:#f8fbff;
+      font-size:13px;
+      color:var(--text);
+      outline:none;
+    }
+    input:focus,select:focus,textarea:focus{
+      border-color:var(--pe-blue);
+      box-shadow:0 0 0 1px rgba(1,48,106,0.35);
+    }
+    textarea{min-height:70px;resize:vertical;}
+    .form-row{display:flex;gap:8px;}
+    .form-row > div{flex:1;}
+    .tiny{font-size:11px;color:var(--muted);margin-top:4px;}
+
+    .info-card{
+      background:#f8fbff;
+      border-radius:var(--radius);
+      padding:12px 14px;
+      border:1px dashed rgba(148,163,184,0.7);
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .faq-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      margin-top:14px;
+    }
+    @media(max-width:900px){.faq-grid{grid-template-columns:1fr}}
+    .faq-item{
+      background:#ffffff;
+      border-radius:10px;
+      padding:10px 12px;
+      border:1px solid rgba(148,163,184,0.3);
+      font-size:13px;
+    }
+    .faq-item h3{font-size:13px;margin-bottom:4px;}
+
+    footer{
+      margin-top:26px;
+      border-top:1px solid rgba(148,163,184,0.35);
+      padding-top:10px;
+      font-size:12px;
+      color:var(--muted);
+      display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    }
+
+  </style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="brand">
+      <div class="mark">BQ</div>
+      <div>
+        <div class="brand-title">BLOKQO</div>
+        <div class="brand-sub">Eventos perto de você · Saúde · Cultura · Comunidade</div>
+      </div>
+    </div>
+    <span class="beta">Experimento · Acesso antecipado</span>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="tagline">Sua cidade, em tempo real</div>
+      <h1 class="hero-title">
+        Descubra o que está <span>rolando perto de você</span>.
+      </h1>
+      <p class="hero-sub">
+        O Blokqo quer ser o lugar onde você vê, em segundos, os eventos que fazem sentido
+        para a sua rotina: mutirões de saúde, shows, feiras, encontros de grupos e muito mais —
+        tudo organizado em um mapa simples.
+      </p>
+
+      <div class="hero-badges">
+        <div class="badge"><span class="dot"></span> Mutirões e ações de saúde</div>
+        <div class="badge"><span class="dot green"></span> Cultura e programação de rua</div>
+        <div class="badge"><span class="dot red"></span> Encontros da comunidade</div>
+      </div>
+
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="document.getElementById('interesse').scrollIntoView({behavior:'smooth'})">
+          🚀 Quero testar o Blokqo
+        </button>
+        <button class="btn-secondary" onclick="document.getElementById('casos').scrollIntoView({behavior:'smooth'})">
+          Ver casos de uso
+        </button>
+      </div>
+      <div class="hero-note">
+        Vamos chamar primeiro quem entrar nessa lista para testar protótipos e as primeiras versões.
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <!-- Coloque aqui a imagem que você gerou, por exemplo em assets/hero-events.png -->
+      <img src="assets/image-01.png" alt="Ilustração de um celular mostrando eventos no mapa" />
+    </div>
+  </section>
+
+  <!-- CASOS DE USO -->
+  <section id="casos">
+    <h2 class="section-title">Como o Blokqo pode entrar no seu dia a dia</h2>
+    <p class="section-sub">Alguns cenários onde o app faz diferença de verdade. Use esses exemplos nas entrevistas com o público.</p>
+
+    <div class="usecases">
+      <div class="card">
+        <div class="tag">Moradores</div>
+        <h3>“O que tem pra fazer hoje perto de casa?”</h3>
+        <p>
+          Ver rapidamente se tem feira, apresentação, roda de conversa ou evento de bairro
+          sem precisar seguir dezenas de perfis em redes sociais.
+        </p>
+      </div>
+      <div class="card">
+        <div class="tag">Saúde & social</div>
+        <h3>“Onde tem serviço gratuito acontecendo?”</h3>
+        <p>
+          Mutirões de vacinação, atendimento itinerante, coleta de sangue, ações de assistência —
+          tudo visível num mapa, com horário e local exato.
+        </p>
+      </div>
+      <div class="card">
+        <div class="tag">Grupos & comunidade</div>
+        <h3>“Que grupos existem perto de mim?”</h3>
+        <p>
+          Pedais noturnos, corridas, encontros de mães, grupos de estudo ou de hobby:
+          encontre ou divulgue de forma simples, sem algoritmos te escondendo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- O QUE APARECE NO MAPA -->
+  <section>
+    <h2 class="section-title">O que o Blokqo mostra no mapa</h2>
+    <p class="section-sub">Eventos colaborativos organizados em categorias claras. Você decide o que quer ver.</p>
+
+    <div class="chips">
+      <div class="chip">
+        <span class="pill-icon" style="background:var(--pe-yellow)"></span> Ações de saúde
+      </div>
+      <div class="chip">
+        <span class="pill-icon" style="background:var(--pe-blue)"></span> Cultura & arte
+      </div>
+      <div class="chip">
+        <span class="pill-icon" style="background:var(--pe-green)"></span> Comunidade & grupos
+      </div>
+      <div class="chip">
+        <span class="pill-icon" style="background:var(--pe-red)"></span> Alertas pontuais (ex: mudança de local, lotação)
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section>
+    <h2 class="section-title">Como deve funcionar na prática</h2>
+    <p class="section-sub">Essa é a visão do produto. A ideia é testar e ajustar junto com quem entrar na lista.</p>
+
+    <div class="steps">
+      <div class="card">
+        <div class="step-num">Passo 1</div>
+        <h3>Você abre e vê o que tem por perto</h3>
+        <p>
+          O app abre num mapa simples, mostrando eventos próximos organizados por horário e tipo.
+          Nada de feed infinito, só o que está perto de você.
+        </p>
+      </div>
+      <div class="card">
+        <div class="step-num">Passo 2</div>
+        <h3>Escolhe onde ir e salva os favoritos</h3>
+        <p>
+          Toque num evento para ver detalhes, rota e opções de lembrete.
+          Pode salvar para depois ou compartilhar com amigos.
+        </p>
+      </div>
+      <div class="card">
+        <div class="step-num">Passo 3</div>
+        <h3>Ajuda a divulgar o que importa</h3>
+        <p>
+          Se você organiza algo ou participa de coletivos, pode criar eventos
+          e deixar o bairro inteiro sabendo — sem depender de algoritmo de rede social.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLUNA DIREITA: FORM + INFO -->
+  <section class="right-col" id="interesse">
+    <div class="signup-card">
+      <h2>Quero testar o Blokqo</h2>
+      <p>Se essa ideia fizer sentido para gente suficiente, o próximo passo é construir o MVP com quem estiver aqui dentro.</p>
+
+      <form action="https://formspree.io/f/movbgeyk" method="POST">
+        <!-- honeypot anti-bot -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <div class="form-row">
+          <div>
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" required placeholder="Seu nome" />
+          </div>
+          <div>
+            <label for="cidade">Cidade</label>
+            <input id="cidade" name="cidade" required placeholder="Ex: Recife, Olinda, Lisboa" />
+          </div>
+        </div>
+
+        <div>
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" required placeholder="seuemail@exemplo.com" />
+        </div>
+
+        <div>
+          <label for="perfil">Hoje você é mais...</label>
+          <select id="perfil" name="perfil">
+            <option value="">Selecione</option>
+            <option value="morador">Morador que quer descobrir o que tem perto</option>
+            <option value="organizador">Organizador de eventos / coletivo</option>
+            <option value="saude-social">Saúde / ação social / ONG</option>
+            <option value="criador-midia">Criador de conteúdo / mídia local</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="uso">Se o Blokqo existisse hoje, como você usaria?</label>
+          <textarea id="uso" name="uso" placeholder="Ex: para divulgar os eventos do meu grupo, para encontrar ações de saúde no bairro, para descobrir o que fazer no fim de semana..."></textarea>
+        </div>
+
+        <div>
+          <label for="frequencia">Com que frequência acha que abriria o app?</label>
+          <select id="frequencia" name="frequencia" required>
+            <option value="">Selecione</option>
+            <option value="todo-dia">Todo dia</option>
+            <option value="algumas-vezes">Algumas vezes por semana</option>
+            <option value="ocasionalmente">Só quando tiver tempo</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary" style="margin-top:4px;justify-content:center;display:inline-flex;width:100%;">
+          Entrar na lista de testes
+        </button>
+
+        <div class="tiny">
+          Usaremos seu contato apenas para falar sobre o Blokqo, convites de teste e pesquisas rápidas.
+        </div>
+      </form>
+    </div>
+
+    <div class="info-card">
+      <strong>Por que estamos fazendo isso assim?</strong><br /><br />
+      Antes de escrever uma linha de código, queremos entender se faz sentido
+      investir tempo e dinheiro nisso. Cada resposta aqui conta como um “voto”
+      de que esse produto deveria existir.
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <h2 class="section-title">Perguntas rápidas</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>Já existe app?</h3>
+        <p>Não ainda. O Blokqo está em fase de validação. Se o interesse for real, o próximo passo é construir um MVP com quem está na lista.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Vai depender de prefeitura?</h3>
+        <p>Não. A ideia é começar com pessoas, grupos locais e organizadores. No futuro, integrações com cidades podem acontecer se fizer sentido.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Vai ser pago?</h3>
+        <p>A ideia inicial é manter o app gratuito para quem usa para descobrir eventos. Modelos pagos podem surgir depois para organizadores maiores.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Funciona em qualquer cidade?</h3>
+        <p>Esse é o plano. Estamos procurando pessoas de realidades diferentes para entender como adaptar a experiência para várias cidades.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© <span id="year"></span> Blokqo · Experimento em construção</div>
+    <div>Contato: <a href="mailto:contato@blokqo.com">contato@blokqo.com</a></div>
+  </footer>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
