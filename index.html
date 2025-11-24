@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Blokqo — Eventos perto de você</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Blokqo: descubra eventos de saúde, cultura e grupos perto de você. Plataforma colaborativa para viver melhor a cidade." />
+  <style>
+    :root{
+      --bg:#ffffff;
+      --card:#f7fbff;
+      --pe-blue:#01306a;
+      --pe-yellow:#ffd24a;
+      --pe-red:#c8102e;
+      --muted:#6b7280;
+      --text:#0f172a;
+      --accent:#0ea5a3;
+      --radius:12px;
+      --maxw:980px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:linear-gradient(180deg,#fbfdff 0%, #f3f8ff 100%);color:var(--text);-webkit-font-smoothing:antialiased;}
+    .wrap{max-width:var(--maxw);margin:28px auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .mark{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--pe-blue),#0b5ea8);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    .brand h1{font-size:18px;letter-spacing:0.06em}
+    .tagline{font-size:12px;color:var(--muted)}
+    main{display:grid;grid-template-columns: 1fr 380px;gap:28px;align-items:start}
+    @media(max-width:900px){main{grid-template-columns:1fr;padding:0} .visual{order:-1}}
+    .hero{padding:28px;border-radius:var(--radius);background:var(--card);box-shadow:0 8px 28px rgba(3,17,40,0.06)}
+    .hero h2{font-size:28px;margin-bottom:10px}
+    .hero p{color:var(--muted);margin-bottom:18px}
+    .features{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+    .pill{background:#fff;border:1px solid rgba(2,48,101,0.06);padding:8px 12px;border-radius:999px;font-size:13px;color:var(--pe-blue);font-weight:600}
+    .cta{display:flex;gap:12px;align-items:center}
+    .btn{background:var(--pe-blue);color:#fff;padding:10px 14px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--pe-blue);border:1px solid rgba(1,48,106,0.08)}
+    .visual{border-radius:var(--radius);overflow:hidden;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#ffffff, #f0f7ff);border:1px solid rgba(3,17,40,0.04)}
+    .visual img{max-width:100%;height:auto;display:block}
+    .card{background:#ffffff;border-radius:14px;padding:20px;border:1px solid rgba(3,17,40,0.04);box-shadow:0 8px 20px rgba(2,17,40,0.04)}
+    .card h3{margin-bottom:8px}
+    label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+    input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef9;background:#fbfdff;font-size:14px;color:var(--text);outline:none}
+    textarea{min-height:84px}
+    .form-row{display:flex;gap:8px}
+    .form-row > *{flex:1}
+    .submit{margin-top:10px;display:flex;gap:8px}
+    .note{font-size:12px;color:var(--muted);margin-top:10px}
+    .section{margin-top:28px;padding:22px;border-radius:12px;background:transparent}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    @media(max-width:900px){.grid3{grid-template-columns:1fr}}
+    .card-min{background:#fff;padding:14px;border-radius:10px;border:1px solid rgba(3,17,40,0.04)}
+    .chip{display:inline-block;background:rgba(1,48,106,0.06);color:var(--pe-blue);padding:8px 12px;border-radius:999px;font-weight:600;font-size:13px}
+    footer{margin-top:38px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="mark">BQ</div>
+        <div>
+          <h1>Blokqo</h1>
+          <div class="tagline">Eventos perto de você · Saúde · Cultura · Comunidade</div>
+        </div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:13px;color:var(--muted)">Acesso antecipado</div>
+        <div style="margin-top:6px"><a href="#interesse" class="chip">Participe dos testes</a></div>
+      </div>
+    </header>
+
+    <main>
+      <div>
+        <section class="hero">
+          <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap">
+            <div style="flex:1;min-width:220px">
+              <h2>Tenha a cidade e a sua rotina na palma da mão</h2>
+              <p>Descubra eventos de saúde, cultura e encontros da comunidade que realmente importam, organizados em um mapa simples e em tempo real — por pessoas e para pessoas.</p>
+
+              <div class="features">
+                <div class="pill">Eventos de saúde</div>
+                <div class="pill">Programação cultural</div>
+                <div class="pill">Grupos e encontros</div>
+              </div>
+
+              <div class="cta" style="margin-top:6px">
+                <a class="btn" href="#interesse">Quero testar</a>
+                <a class="btn secondary" href="#como-funciona">Como funciona</a>
+              </div>
+            </div>
+
+            <!--
+            <div class="visual" style="width:360px;border-radius:12px">
+              <img src="/Users/antonio/Repositories/blokqo-landing/assets/image-01.png" alt="Ilustração Blokqo - cidade na mão" />
+            </div>
+            -->
+          </div>
+        </section>
+
+        <section id="como-funciona" class="section">
+          <h3>Como funciona</h3>
+          <div class="grid3">
+            <div class="card-min">
+              <strong>1 · Descubra</strong>
+              <div style="color:var(--muted);margin-top:6px">Veja eventos próximos filtrados por categoria e hora, direto no mapa.</div>
+            </div>
+            <div class="card-min">
+              <strong>2 · Planeje</strong>
+              <div style="color:var(--muted);margin-top:6px">Escolha rotas e programas que se encaixam no seu dia — evite surpresas e otimize seu tempo.</div>
+            </div>
+            <div class="card-min">
+              <strong>3 · Contribua</strong>
+              <div style="color:var(--muted);margin-top:6px">Compartilhe eventos da sua comunidade e confirme presenças para aumentar a confiança nas informações.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h3>Quem usa</h3>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
+            <div class="card-min">Moradores</div>
+            <div class="card-min">Entregadores</div>
+            <div class="card-min">Ciclistas e pedestres</div>
+            <div class="card-min">Organizadores locais</div>
+            <div class="card-min">ONGs e unidades de saúde</div>
+          </div>
+        </section>
+      </div>
+
+      <aside>
+        <div class="card" id="interesse">
+          <h3>Participe dos testes</h3>
+          <p style="color:var(--muted);margin-bottom:12px">Fique entre os primeiros a testar Blokqo e ajude a moldar a forma como as cidades mostram eventos localmente.</p>
+
+          <form action="https://formspree.io/f/movbgeyk" method="POST" id="signup-form">
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" required placeholder="Seu nome completo" />
+            <div class="form-row" style="margin-top:8px">
+              <div>
+                <label for="cidade">Cidade</label>
+                <input id="cidade" name="cidade" required placeholder="Ex: Recife, Lisboa..." />
+              </div>
+              <div>
+                <label for="perfil">Perfil</label>
+                <select id="perfil" name="perfil">
+                  <option value="">Selecione</option>
+                  <option value="morador">Morador</option>
+                  <option value="entregador">Entregador</option>
+                  <option value="organizador">Organizador</option>
+                  <option value="ong">ONG / Saúde</option>
+                </select>
+              </div>
+            </div>
+
+            <label for="email" style="margin-top:8px">E-mail</label>
+            <input id="email" name="email" type="email" required placeholder="seu@exemplo.com" />
+
+            <label for="uso" style="margin-top:8px">Por que quer testar?</label>
+            <textarea id="uso" name="uso" placeholder="Ex: quero divulgar eventos do meu coletivo; quero descobrir mutirões de saúde"></textarea>
+
+            <label for="frequencia" style="margin-top:8px">Com que frequência abriria o app?</label>
+            <select id="frequencia" name="frequencia" required>
+              <option value="">Selecione</option>
+              <option value="diario">Todo dia</option>
+              <option value="semanal">Algumas vezes por semana</option>
+              <option value="ocasional">Ocasionalmente</option>
+            </select>
+
+            <div class="submit">
+              <button type="submit" class="btn" style="flex:1">Quero testar</button>
+              <button type="button" class="btn secondary" onclick="window.location='#como-funciona'">Ver como funciona</button>
+            </div>
+            <div class="note">Usaremos seu contato apenas para convites de teste e pesquisas rápidas.</div>
+          </form>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card">
+          <h4>Categorias em destaque</h4>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+            <span class="pill" style="background:transparent;border:1px solid rgba(1,48,106,0.06);color:var(--pe-blue)">Saúde</span>
+            <span class="pill" style="background:transparent;border:1px solid rgba(0,132,61,0.06);color:var(--pe-green)">Cultura</span>
+            <span class="pill" style="background:transparent;border:1px solid rgba(200,16,46,0.06);color:var(--pe-red)">Comunidade</span>
+            <span class="pill" style="background:transparent;border:1px solid rgba(14,165,163,0.06);color:var(--accent)">Mobilidade</span>
+          </div>
+        </div>
+
+      </aside>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Blokqo · Experimento</div>
+      <div>Contato: <a href="mailto:contato@blokqo.com">contato@blokqo.com</a></div>
+    </footer>
+  </div>
+
+  <script>
+    const form = document.getElementById('signup-form');
+    form.addEventListener('submit', function(e){
+      setTimeout(()=> {
+        alert('Obrigado! Seu interesse foi registrado. Vamos enviar instruções por e-mail.');
+      }, 300);
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
